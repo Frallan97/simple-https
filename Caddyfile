@@ -1,5 +1,18 @@
-# For local development with localhost
+# Global options
+{
+    # Enable automatic HTTPS
+    auto_https disable_redirects
+    # Allow IP addresses for certificates
+    servers {
+        protocols h1 h2 h2c
+    }
+}
+
+# Handle all requests
 :80 {
+    # Enable automatic HTTPS
+    tls internal
+
     # Handle API requests
     handle /api/* {
         reverse_proxy backend:8080
@@ -24,6 +37,7 @@
         X-Content-Type-Options nosniff
         X-Frame-Options DENY
         X-XSS-Protection "1; mode=block"
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
     }
 }
 
