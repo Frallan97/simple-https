@@ -9,7 +9,7 @@
 }
 
 # Handle all requests
-:80 {
+saldo.franssjostrom.com {
     # Enable automatic HTTPS
     tls internal
 
